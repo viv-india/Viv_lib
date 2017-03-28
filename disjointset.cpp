@@ -28,10 +28,10 @@ to remove the need of traversing the nodes again and again to find the parent
 
 template<class t1>
 class disjoint_set
-{
+{public:
 t1 *parent ;	//an array containing index of parent
 t1 *rank ;	//an array for rank of each node
-public:
+
 
 disjoint_set(t1 v)	//constructor for allocating memory to both variables and initialising thier values 
 {
@@ -40,7 +40,7 @@ disjoint_set(t1 v)	//constructor for allocating memory to both variables and ini
 
  for(t1 i=0;i<v;i++)
      {
-	rank[i]=0;
+	rank[i]=1;
         parent[i]=i;
   	}
 }
@@ -65,12 +65,10 @@ if(px==py)
 cout<<"\nAlready in same set\n";
 else//set with more rank becomes parent
 {if(rank[px]>rank[py])
-parent[py]=px;
-else if(rank[py]>rank[px])
-parent[px]=py;
-else if(rank[px]==rank[py])
-{parent[px]=py;
-rank[py]++;//one merger with equal rank set increases rank by one
+{parent[py]=px;
+rank[px]+=rank[py];
+}else{parent[px]=py;
+rank[py]+=rank[px];//one merger with equal rank set increases rank by one
 }}}
 
 
