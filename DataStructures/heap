@@ -1,0 +1,94 @@
+/*************What doesn't kills you makes you stronger************************/  
+#include<bits/stdc++.h>
+using namespace std;
+#define ld long double
+#define ull unsigned long long 
+#define ll long long 
+#define mod 1000000007
+#define f(i,n) for( ll (i)= 0;(i)<(n);(i)++)
+#define faster ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
+#define lp pair<ll,ll> 
+#define maxn (ll)1000000000000000000
+#define mp make_pair
+#define mt make_tuple
+#define M_H priority_queue<lp ,vector<lp >,greater<lp > >
+//ll gcd(ll a ,ll b)  {return(a==0?b:gcd(b%a,a));}
+#define red 1;
+#define black 0;
+#define rep(i,j,n) for( ll (i)= j;(i)<(n);(i)++)
+
+int main()
+{	faster;
+	ll n;
+	bool flag=1;
+	cin>>n;
+	string s[n];
+	f(i,n)
+	cin>>s[i];
+	ll t=s[0].size();
+	ll a[n][t],mo=-1;
+	a[0][0]=0;
+	f(i,n)
+	a[i][0]=0;
+	for(ll i=1;i<=t;i++)
+	{ll j=0;
+	if(t%i==0)
+	for( j=0;j<t;j+=i)
+	 {if(s[0].substr(j,i)!=s[0].substr(0,i))
+	  break;
+	  //cout<<s[0].substr(j,i)<<" "<<s[0].substr(0,i)<<" :"<<(s[0].substr(j,i)!=s[0].substr(0,i))<<endl;
+	  }
+	  //cout<<j;
+	if(j==t)
+	{mo=i;break;}
+	}
+	for(ll i=1;i< n;i++)
+	{if(t!=s[i].size())
+		{flag=0;
+		break;
+		}
+		ll k=t;
+		for(ll j=0;j<t;j++)
+		{k=t;
+			while(k--)
+			{
+			//cout<<k<<":"<<s[i][(t-k+j-1)%t]<<" :"<<s[0][t-k-1]<<endl;
+		
+			 if(s[i][(t-k+j-1)%t]!=s[0][t-k-1])
+			 {	k++;
+			 	break;
+			 }
+			 a[i][(t-k+j-1)%t]=t-k-1;
+			}
+		//cout<<k;	
+		if(k==-1)
+		break;
+		}
+		//cout<<i<<" :"<<k<<endl;
+	if(k!=-1)
+	{flag=0;
+	break;
+	}
+	}
+	//f(i,n)
+	//cout<<i<<" : "<<a[i][0]<<endl;
+	//cout<<mo;
+	ll ans=INT_MAX;
+	if(flag)
+	{ll sz=0;
+	  f(i,t)
+	  {sz=0;
+	  
+	  f(j,n) 
+	  sz+=(t-a[j][0]%mo+i)%mo;
+	  
+	  if(sz<ans)
+	  ans=sz;
+	  }		
+	
+	}
+if(flag)
+cout<<ans;
+else
+cout<<"-1";	
+}

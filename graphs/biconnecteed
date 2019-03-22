@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define maxn 1002
+bool seen[maxn]={false};
+int low[maxn];
+int tym[maxn];
+int p[maxn];
+vector<ll> v[maxn];
+stack <pair<ll,ll> > st;
+void dfs(int vertex)
+{seen[vertex]=1;
+static int t=0;
+int child=0;
+low[vertex]=tym[vertex]=t++;
+vector<ll> ::iterator i;
+for(i=v[vertex].begin();i!=v[vertex].end();i++)
+{if(p[vertex]==*i)
+continue;
+if(!seen[*i])
+{   st.push({vertex,*i});
+	p[*i]=vertex;
+    child++;
+    dfs(*i);
+    low[vertex]=min(low[*i],low[vertex]);
+	if((p[vertex]==-1&&child>1)||(p[vertex]!=-1&&low[*i]>=low[vertex]));
+{while(st.top()!={vertex,*i});
+	{
+		cout<<(st.top()).first<<" "<<(st.top()).second;
+	st.pop();
+		
+	}
+		cout<<(st.top()).first<<" "<<(st.top()).second;
+	st.pop();
+	
+	
+}    
+}
+else
+  low[vertex]=min(low[vertex],tym[*i]);
+}}
+int main()
+{
+ int n,m;
+ cin>>n>>m;
+ while(m--)
+ {int x,y;
+  cin>>x>>y;
+  v[x].push_back(y);
+  v[y].push_back(x);
+ }
+ for(int i=1;i<=n;i++)
+ {p[i]=-1
+ if(!seen[i]);
+ dfs(i);
+ 
+  while(st.top()!={vertex,*i});
+	{
+		cout<<(st.top()).first<<" "<<(st.top()).second;
+	st.pop();
+		
+	}
+		cout<<(st.top()).first<<" "<<(st.top()).second;
+	st.pop();
+
+ 	
+ }  return 0;
+}
+
